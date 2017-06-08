@@ -1,103 +1,99 @@
-You can collect points with the ReachView app using Point Collection tool. The feature allows to make project-based point collection with auto-save rules or manually and then export the data into different formats. 
+Vous pouvez relever des points avec l'application ReachView en utilisant l'utilitaire de relevés de points "Point collection". Cette fonctionnalité vous permet de relever des points par projet avec des règles d'enregistrement automatiques ou manuelles et ensuite d'exporter les données dans différents formats.
 
 !!! success " "
-    The tool is perfect for surveying and ground control points collection. 
+    Cet outil est adapté à l'arpentage et aux points de contrôle.
 
-###Creating New Project
+###Créer un Nouveau Projet
 
-####Basic information
+####Informations de Base (Basic information)
 
-To start a new project select Survey tab in ReachView and click on the "New Project" button. Name your project and assign an author, you can specify the additional details in comment section. Submit basic information by clicking "Next" button.
+Pour démarrer un nouveau projet selectionnez l'onglet "Survey" dans ReachView et cliquez sur le bouton de nouveau projet "New Project". Donnez un nom à votre projet et assignez un auteur, vous pouvez renseigner des informations supplémentaires dans la section commentaires. Soumettre les informations de bases en appuyant sur le bouton suivant "Next".
 
 <p style="text-align:center" ><img src="../img/reachview/survey/new-project.gif" style="width: 800px;" /></p>
 
 
-####Project settings 
+####Configuration du projet
 
-On this step choose the projection. Currently you can use EPSG:4326 (WGS84 Latitude, Longitude and Height) projection.
+Lors de cette étape vous devez chosir le système de projectoin. Actuellement vous pouvez choisir la projection EPSG:4326 (Latitude, Longitude et Altitude WGS84).
 
 !!! attention
-    The projection cannot be changed after project creation is done.
+    Le système de projection ne peut-être modifié une fois le projet créé.
 
-In this section you can also specify the default height of antenna, which is actually the distance between the antenna and the point being measured (h on the scheme below).
+Dans cette section vous pouvez également renseigner la hauteur par défaut de l'antenne, qui est en réalité la distance entre l'antenne et le point en cours de mesure (h sur le schéma suivant).
 
 <p style="text-align:center" ><img src="../img/reachview/survey/height.png" style="width: 500px;" /></p>
 
-This parameter can be manually changed for each point before its collection. 
+Ce paramètre peut être changé manuellement pour chaque point avant d'en faire le relevé.
 
 <p style="text-align:center" ><img src="../img/reachview/survey/project-settings.gif" style="width: 800px;" /></p>
 
 
-####Auto-save rules
+####Règles d'enregistrement automatiques
 
-With the point collection tool you may get points manually or use auto-save rules. If you want to collect manually- you can skip this step.  
-The rules are individual for SINGLE, FLOAT and FIX statuses and may apply to the specific solution.
+Avec l'outil de relevés de points vous pouvez relever des points manuellement ou en utilisant des règles automatiques. Si vous voulez effectuer des relevés manuels vous pouvez sauter cette étape.
+Les règles sont individuelles pour les status SINGLE, FLOAT et FIX et peuvent s'appliquer à la solution spécifique.
 
-The rule settings include three parameters:
+Les règles peuvent être paramétrées selon trois critères:
 
-* Required observation time  
+* Temps d'observation requis (Required observation time)  
 
-* Precision  
-This parameter indicates the highest possible RMS error within the measurement. The deviation for single solution is usually several meters, with the float solution you may expect sub-meter precision,  with the fix status you can get centimeter level precision.
+* Précision (Precision)  
+Ce paramètre indique la plus grande erreur RMS () lors de l'acquisition. L'écart type pour une solution "Single" est habituellement de plusieurs mètres, avec une solution "Float" vous pouvez espérer une précision inférieure au mètre, et avec un solution "Fix" vous pouvez obtenir une précision de l'ordre du centimètre.
 
 * DOP  
-DOP stands for “the dilution of precision” and specifies the effect of satellite geometry on measurement precision. The better the geometry - the lower the DOP value. For auto-save rules default value is 2, when DOP is higher it is not recommended to collect points as bad satellite geometry might affect accuracy.
+DOP signifie "dilution de la précision" (dilution of precision en anglais) en rend compte de l'effet de la position géométrique des satellites sur la précision de la mesure. Plus la géométrie est favorable, plus la valeur de la DOP est faible. Pour les règles d'enregistrement automatiques la valeur par défaut est de 2, mais quand la DOP est plus importante il n'est pas recommandé de relever des points parce qu'une mauvaise géométrie satellite peut détériorer la justesse des résultats.
 
-#####Example settings for auto-save rules
+#####Exemple de configuration pour les règles d'enregistrement automatiques
 
-Let’s create auto-save rules for FLOAT and FIX statuses.  
-Observation time for float solution is 2 minutes and 20 seconds, the precision is 0.5 meters and DOP is equal 2.  
-For the fixed solution we set the time value of 20 seconds, the precision is 0.005 meters and DOP is 2.
+Voici un exemple de régles d'enregistrement automatiques pour des status FLOAT et FIX.
+Le temps d'observation pour une solution FLOAT est 2 minutes et 20 secondes, la précision est de 0.5 mètres et la DOP est de 2.
+Pour la solution FIX le temps d'observation est de 20 secondes, la précision est de 0.005 mètres et la DOP est de 2.
 
 <p style="text-align:center" ><img src="../img/reachview/survey/auto-save.gif" style="width: 800px;" /></p>
 
 
 !!! note
-    Auto-save rules configuration in this example is shown for demonstration purposes.
+    Les règles d'enregistrement automatiques de cet exemple sont prises à titre d'exemple uniquement.
 
+Le point sera relevé automatiquement après 20 secondes d'observation si la DOP ne dépasse pas 2 et l'écart type RMS est inférieur à 0.005 mètres. Dans les cas où la solution est FLOAT, le temps d'observation sera de 2 minutes et 20 secondes dans les mêmes conditions.
 
-The point will be collected automatically after 20 seconds of observation if the DOP doesn’t exceed 2 and the RMS deviation is less than  0.005 meters. In case the solution is floating, the observation time will be 2:20 with the same conditions.
+Une fois les règles d'enregistrement automatiques paramétrées, vous pouvez cliquer sur le bouton "Done" et passer à la vue projet et l'interface de l'outil de relevés.
 
-After auto-save rules configured, we can click "Done" button and move to project view and survey tool interface. 
-
-###Survey tool interface
-Point collection tool interface shows the project settings, auto-save rules and the list of points collected. The map below will show collected points. 
-In the right upper  corner of the screen you’ll find project export icon.
+###Interface de relevés de points (Survey tool interface)
+L'interface de l'utilitaire de relevés de points affiche les paramètres du projet, les règles d'enregistrement automatiques ainsi que la liste des points relevés. La carte ci-dessous affichera les points relevés.
+Dans le coin en haut à droite de l'écran vous trouverez l'icône pour exporter le projet.
 
 !!! attention
-    In the current version you can’t edit project parameters you’ve initially specified, this opportunity will be added in the next release.
+    Dans la version courante de l'application vous ne pouvez pas éditer les paramètres du projet que vous avez initialement renseignés, ces possibilités seront ajoutées dans une version prochaine de l'application.
 
 
-###Collecting the point
-* To collect a new point use the green button in the right bottom of the screen. 
-* In a new window you’ll see the status section with real-time RTK and averaging statuses.
-* In the Point settings tab specify name (if you leave it blank the default point name will be “Point 1”, “Point 2”, etc).
-* Set antenna height if you didn’t do it in projects settings or if the height changed. 
-* When everything is ready check the status bar along with the green "Collect" button in the bottom of the screen.
+###Relever d'un point
+* Pour relever un point, utilisez le bouton vert en bas à droit de l'écran.
+* Dans une nouvelle fenêtre vous verrez une section de statut avec le temps réel RTK et le moyennage des coordonnées.
+* Dans l'onglet des paramètres des coordonnées (Point settings) vous pouvez renseigner un nom (si vous le laissez vide le nom par défaut sera "Point 1", "Point 2", etc).
+* Spécifiez la hauteur d'antenne si vous ne l'avez pas fait dans les paramètres du projet ou si celle-ci a été modifiée.
+* Lorsque tout est prêt vérifiez la barre de statut ainsi que le bouton vert de relevés "Collect" en bas de l'écran.
+
 
 <p style="text-align:center" ><img src="../img/reachview/survey/project.gif" style="width: 800px;" /></p>
 
 
-If the status bar is red and you see the message “Waiting for status” , you won’t be able to start point collection. The tool needs satellites visibility, at least single status is needed.
-If the status bar is green, click "Collect" to start point collection.  
-If you start point collection and the auto-rule for current status is enabled, status bar in the bottom will show countdown of required observation time. As the time passes, the point will be automatically captured. **Don’t forget to click "Save&Go" to save the point!**  
-If you want to collect point manually just press "Accept" button during the collection. Your point will be stored and you can move to the next one.
+Si la barre de statut est rouge et que vous voyez le message en attente de statut "Waiting for status", vous ne serez pas en mesure de commencer le relevé du point. L'outil nécessite une certaine visibilité satellite, au moins un solution SINGLE est nécessaire.
+Si la barre de statut est verte, cliquez sur "Collect" pour démarrer le relevé du point.
+Si vous commencez un relevé et que la règle d'enregistrement automatique pour le statut courant est activé, la barre de statut en bas de l'écran affichera un compte à rebours concernant le temps d'observation requis. Quand le temps nécessaire sera écoulé, le point sera automatiquement enregistré. **Ne pas oublier d'appuyer sur le bouton "Save&Go" pour enregistrer le point et passer au suivant!**
+Si vous souhaitez relever un point manuellement, appuyez simplement sur le bouton d'acceptation "Accept" pendant l'acquisition. Votre point sera enregistré et vous pourrez passer au suivant.
 
 <p style="text-align:center" ><img src="../img/reachview/survey/manual-collect.gif" style="width: 800px;" /></p>
 
 
-###Exporting Data
+###Exporter les données
 
-Before export you can delete useless points from the list in the project interface. By clicking on each point you can see its description and coordinates.  
-When you’re done with point collection you may export points from the project to DXF, GeoJSON, ESRI shapefiles. Large projects might take some time to process.
+Avant d'exporter vous pouvez supprimer les points inutiles depuis la liste dans l'interface du projet. En cliquant sur chacun des points vous pouvez voir sa description et ses coordonnées.
+Quand vous avez fini avec le relevé des points vous pouvez exporter les points du projet en DXF, GeoJSON, ESRI shapefiles. Les gros projets peuvent prendre un certain temps à traiter.
 
 <p style="text-align:center" ><img src="../img/reachview/survey/export.gif" style="width: 800px;" /></p>
 
 
-## To-Dos
+## A faire (To-Dos)
 
-Survey Tool is constantly improving. Many features including new export formats, new project settings are coming soon. The discussion, including questions and feature request, is available on [community forum](https://community.emlid.com).
-
-
-
-
+L'outil de relevés (Survey tool) est en constante évolution. Beaucoup de fonctionalités comme de nouveaux formats d'exportation, de nouveaux paramètres de projets vont vite arriver. La discussion, incluant les questions ou demande de fonctionalités, est accessible sur le [forum de la communauté](https://community.emlid.com).
