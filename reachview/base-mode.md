@@ -79,7 +79,7 @@ Veuillez vérifier que vous sélectionner des puissance d'émission et de fréqu
 | 1020 |              GLONASS Ephemeris                 |
 
 
-Le sous-ensembel minimal nécessaire au fonctionnement en RTK est 1002 pour les observations GPS et 1006 pour les coordonnées de la station fixe (base). Activer plus de messages ou une fréquence d'envoi plus importante requiert une bande passante plus importante pour votre connexion.
+Le sous-ensemble minimal nécessaire au fonctionnement en RTK est 1002 pour les observations GPS et 1006 pour les coordonnées de la station fixe (base). Activer plus de messages ou une fréquence d'envoi plus importante requiert une bande passante plus importante pour votre connexion.
 
 Voici une estimation en bps (bit par secondes) quand les messages sont configurés à 1 Hz:
 Here is an estimation of bps when messages are configured at 1 Hz:
