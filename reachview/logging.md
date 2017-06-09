@@ -1,42 +1,40 @@
-ReachView supports four simultaneous logs streams. Full memory behaviour and log split period could be specified in the [settings](settings/). Every log stream has enable/disable logic, once enabled logs will be written even if you restart the device. After restart new log file will be automatically created.
+ReachView supporte quatre flux de logs simultanés. Le comportant lorsque la mémoire est pleine ou le découpage des logs peut être spécifié dans les [paramètres](settings/). Chaque flux de log peut être activé ou désactivé, une fois activé les logs continuent à être écrits même après un redémarrage de l'appareil. Après un redémarrage des nouveaux fichiers de logs sont créés automatiquement.
 
-### Raw data
+### Données brutes (Raw data)
 
 <p style="text-align:center" ><img src="../img/reachview/logging/raw.png" style="width: 800px;" /></p>
 
-Raw data is logged in UBX format, it could be converted to Rinex after download using RTKCONV utility. Event marks are stored in this file as well.
+Les donnée brutes sont enregistrées au format UBX, qui peut être convertit en Rinex après téléchargement en utilisant l'utilitaire RTKCONV. Les marques temporelles sont aussi enregistrées dans ce fichier.
 
 ### Position
 
 <p style="text-align:center" ><img src="../img/reachview/logging/position.png" style="width: 800px;" /></p>
 
-Position could be logged in different formats. 
+Les coordonnées peuvent être enregistrées sous différents formats.
 
 **LLH**  
-Simple text protocol for Latitude Longitude and Height as well as solution status. Protocol definition can be found in [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf) on page 102.
+Format texte simplifié pour la Latitude, Longitude et Altitude ainsi que le statut de la solution. La définition du format se situe dans le [manuel RTKLIB ver. 2.4.2](http://www.rtklib.com/prog/manual_2.4.2.pdf) à la page 102.
 
 **XYZ**  
-Simple text protocol for X, Y, Z ECEF coordinates as well as solution status. Protocol definition can be found in [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf) on page 102.
+Format texte simplifié pour les coordonnées X, Y, Z ECEF ainsi que le statut de la solution. La définition du format se situe dans le [manuel RTKLIB ver. 2.4.2](http://www.rtklib.com/prog/manual_2.4.2.pdf) à la page 102.
 
 **ENU**  
-Simple text protocol for East, North and UP components of the baseline as well as solution status. Protocol definition can be found in [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf) on page 102.
+Format texte simplifié pour les composantes Est (East), Nord (North) et Haut (UP) du référentiel ainsi que le statut de la solution. La définition du format se situe dans le [manuel RTKLIB ver. 2.4.2](http://www.rtklib.com/prog/manual_2.4.2.pdf) à la page 102.
 
 **NMEA 0183**  
-The most popular standard in the industry. Supported messages: GPRMC, GPGGA, GPGSA, GLGSA, GAGSA,  GPGSV, GLGSV and GAGSV. Protocol definition can be found in [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf) on page 102.
+Le format standard le plus répandu du secteur. Messages supportés: GPRMC, GPGGA, GPGSA, GLGSA, GAGSA,  GPGSV, GLGSV et GAGSV. La définition du format se situe dans le [manuel RTKLIB ver. 2.4.2](http://www.rtklib.com/prog/manual_2.4.2.pdf) à la page 102.
 
 **ERB**  
-Used for communication to Ardupilot, protocol description can be found [here](https://files.emlid.com/ERB.pdf).
+Utilisé pour la communcation avec Ardupilot, la description du format se situe [ici](https://files.emlid.com/ERB.pdf).
 
-### Base correction
+### Correction de la station fixe (Base correction)
 
 <p style="text-align:center" ><img src="../img/reachview/logging/base_correction.png" style="width: 800px;" /></p>
 
-Logs incoming correction from the base. Format is defined by correction input.
- 
-### Additional correction
+Les logs de correction provenant de la station fixe (base). Le format est défini en fonction de l'onglet de corrections en entrée "correction input".
+
+### Correction supplémentaire (Additional correction)
 
 <p style="text-align:center" ><img src="../img/reachview/logging/additional.png" style="width: 800px;" /></p>
 
-
-Logs incoming additional correction. Format is defined by correction input.
-
+Les logs provenant de la correction supplémentaire.Le format est défini en fonction de l'onglet de corrections en entrée "correction input".

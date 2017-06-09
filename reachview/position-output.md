@@ -3,51 +3,50 @@
 
 <p style="text-align:center" ><img src="../img/reachview/position_output/format.png" style="width: 800px;" /></p>
 
-Reach supports following position output formats: 
+Le module Reach supporte les formats de sortie suivants pour les coordonnées:
 
 #### LLH
-Simple text protocol for Latitude Longitude and Height as well as solution status. Protocol definition can be found in [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf) on page 102.
+Format texte simplifié pour la Latitude, Longitude et Altitude ainsi que le statut de la solution. La définition du format se situe dans le [manuel RTKLIB ver. 2.4.2](http://www.rtklib.com/prog/manual_2.4.2.pdf) à la page 102.
 
 #### XYZ
-Simple text protocol for X, Y, Z ECEF coordinates as well as solution status. Protocol definition can be found in [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf) on page 102.
+Format texte simplifié pour les coordonnées X, Y, Z ECEF ainsi que le statut de la solution. La définition du format se situe dans le [manuel RTKLIB ver. 2.4.2](http://www.rtklib.com/prog/manual_2.4.2.pdf) à la page 102.
 
 #### ENU
-Simple text protocol for East, North and UP components of the baseline as well as solution status. Protocol definition can be found in [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf) on page 102.
+Format texte simplifié pour les composantes Est (East), Nord (North) et Haut (UP) du référentiel ainsi que le statut de la solution. La définition du format se situe dans le [manuel RTKLIB ver. 2.4.2](http://www.rtklib.com/prog/manual_2.4.2.pdf) à la page 102.
 
 #### NMEA 0183
-The most popular standard in the industry. Supported messages: GPRMC, GPGGA, GPGSA, GLGSA, GAGSA,  GPGSV, GLGSV and GAGSV. Protocol definition can be found in [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf) on page 102.
+Le format standard le plus répandu du secteur. Messages supportés: GPRMC, GPGGA, GPGSA, GLGSA, GAGSA,  GPGSV, GLGSV et GAGSV. La définition du format se situe dans le [manuel RTKLIB ver. 2.4.2](http://www.rtklib.com/prog/manual_2.4.2.pdf) à la page 102.
 
 #### ERB
-Used for communication to Ardupilot, protocol description can be found [here](https://files.emlid.com/ERB.pdf).
+Utilisé pour la communcation avec Ardupilot, la description du format se situe [ici](https://files.emlid.com/ERB.pdf).
 
 
-**Data in any of these formats can be sent via Serial, TCP or Bluetooth.**
+**Les données dans chacun de ces formats peuvent être envoyées par laison série (Serial), TCP, ou Bluetooth.**
 
-### Serial
-Serial port connection is available through several hardware connection options. All of them support following baud rates: 4800, 9600, 14400, 19200, 28800, 38400, 56000, 57600, 115200, 128000, 153600, 230400, 256000, 460800, 921600
+### Laison Série (Serial)
+La connexion au port série est disponible avec différentes options de connexion matérielle. Toutes supportent les vitesses de transmission suivantes: 4800, 9600, 14400, 19200, 28800, 38400, 56000, 57600, 115200, 128000, 153600, 230400, 256000, 460800, 921600
 
 #### UART
-Corresponds to TTL UART on Reach module or to RS232 port on Reach RS extension connector. Common way to connect to autopilot or another consumer of position data.
+Correspond à l'UART TTL du module Reach ou le port RS232 du connecteur d'extension disponible sur le Reach RS. C'est un cas usuel que d'y connecter l'auto-pilotage ou une autre consommateur des données de position.
 
 #### USB-to-PC
-When connected over USB to a PC Reach will show up as several devices, one of them will be a serial port. You can use this serial port to send position data to the PC.
+Quand le module Reach est connecté à un ordinateur via USB il sera visible en tant que différents appareils, l'un d'entre eux est via un port série. Vous pouvez utiliser ce port série pour envoyer les données de correction à l'ordinateur.
 
 #### USB OTG
-Use a micro-USB OTG cable to connect USB accessories. In this mode only USB devices that emulate a serial port could be used. Example of popular chips that are supported: FT232, CP2102. There are numerous devices built on these chips that will provide you a TTL UART or RS232 port. 
+Utiliser un cable micro-USB OTG pour connecter des accessoires USB. Dans ce mode là seulement les appareils USB qui émulent un port série peuvent être utilisés. Exemples de puces répandues qui sont supportées : FT232, CP2102. Il y a de nombreux appareils basés sur ces puces qui peuvent vous fournir un UART TTL ou un port RS232.
 
 ### TCP
-Typical scenario for using TCP is sending position data to an application on the same network or to a server with public IP. 
+Un scénario typique pour utiliser TCP est d'envoyer les données de positionnement sur le même réseau ou sur un serveur avec une adresse ip publique.
 
-TCP supports two roles:
+Le protocol TCP fonctionne avec deux modes:
 
-#### Server
-You need to specify port and after that clients will be able to connect to this device on it’s IP address. Many clients can be connected to the same server.
+#### Serveur
+Vous devez renseigner le port et ensuite les clients seront en mesure de se connecter à cet appareil sur son adresse IP. Plusieurs clients peuvent se connecter au même serveur.
 
 #### Client
-You need to specify IP address of the server and port number.
+Vous devez renseigner l'adresse IP et le numéro du port du serveur.
 
-If ReachView does not allow to set a certain port number it means that it is reserved for internal use.
+Si ReachView ne permet pas de renseigner un port spécifique, cela signifie qu'il est utilisé pour un usage interne.
 
 ### Bluetooth
-Bluetooth output is used to stream position data to smartphones, tablets or data collectors. Please make sure to pair your device in Bluetooth settings.
-
+La sortie Bluetooth est utilisé pour transmettre de manière continue les données de position à des smartphones, tablettes ou collecteurs de données. Veuillez vérifier que votre appareil est associé dans les paramètres Bluetooth.

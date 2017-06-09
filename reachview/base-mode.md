@@ -8,7 +8,7 @@ Le module reach exporte le flux de correction selon le format standard RTCM3. Le
 La connexion au port série est disponible avec différentes options de connexion matérielle. Toutes supportent les vitesses de transmission suivantes: 4800, 9600, 14400, 19200, 28800, 38400, 56000, 57600, 115200, 128000, 153600, 230400, 256000, 460800, 921600
 
 #### UART
-Correpond à l'UART TTL du module Reach ou le port RS232 du connecteur d'extension disponible sur le Reach RS. C'est un cas usuel que d'y connecter la radio pour transmettre les données de correction.
+Correspond à l'UART TTL du module Reach ou le port RS232 du connecteur d'extension disponible sur le Reach RS. C'est un cas usuel que d'y connecter la radio pour transmettre les données de correction.
 
 #### USB-to-PC
 Quand le module Reach est connecté à un ordinateur via USB il sera visible en tant que différents appareils, l'un d'entre eux est via un port série. Vous pouvez utiliser ce port série pour envoyer les données de correction à l'ordinateur.
@@ -32,22 +32,24 @@ Quand un module Reach est connecté via NTRIP en mode station fixe (base), il ag
 ### TCP
 Le scénario typique pour utiliser TCP est d'envoyer les données de correction vers une application sur le même réseau ou sur un serveur avec une adresse IP publique.
 
-Le mode TCP supporte deux rôles:
+Le protocol TCP fonctionne avec deux modes:
 
 #### Serveur
 Vous devez renseigner le port et ensuite les clients seront en mesure de se connecter à cet appareil sur son adresse IP. Plusieurs clients peuvent se connecter au même serveur.
+
 #### Client
 Vous devez renseigner l'adresse IP et le numéro du port du serveur.
 
-Si ReachView ne permet pas de renseigner un port spécifique, cela signigie qu'il est utilisé pour un usage internet.
+Si ReachView ne permet pas de renseigner un port spécifique, cela signifie qu'il est utilisé pour un usage interne.
 
 ### Radio LoRa (seulement Reach RS)
-Le Reach RS possède un radio LoRa interne qui est utilisée pour recevoir et envoyer les corrections. La radio fonctionne dans un seul sens, elle peut être configurée soit pour envoyer des corrections (depuis la station fixe ou base) ou pour les recevoir (récepteur mobile ou rover). En utilisant la modulation LoRa il est possible d'atteindre une portée de 19km en ligne de visée directe ou de quelques kilomètres en zone urbaine avec seulement 20 dBm de puissance de sortie. Tant que les paramètres de fréquence et de vitesse de transmission correspondent il est possible de connecter un nombre infini de récepteur mobile qui peuvent alors recevoir les corrections depuis une seule station fixe (base).
+Le Reach RS possède un radio LoRa interne qui est utilisée pour recevoir et envoyer les corrections. La radio fonctionne dans un seul sens, elle peut être configurée soit pour envoyer des corrections (depuis la station fixe ou base) ou pour les recevoir (récepteur mobile ou rover). En utilisant la modulation LoRa il est possible d'atteindre une portée de 19km en ligne de visée directe ou de quelques kilomètres en zone urbaine avec seulement 20 dBm de puissance de sortie. Tant que les paramètres de fréquence et de vitesse de transmission correspondent il est possible de connecter un nombre infini de récepteur mobile qui peuvent alors recevoir les corrections depuis une même station fixe (base).
 
 Plus la vitesse de transmission est faible, plus la portée effective sera grande. Selon votre selection de messages RTCM3 ReachView restreindra automatiquement les vitesses de transmission trop faibles. Il faut désactiver des messages de correction ou réduire leur fréquence d'envoi afin de débloquer des vitesses de transmission plus faibles.
+
 Les vitesses de transmission sur les Reach RS émetteurs (base) et récepteurs (rover) doivent correspondre.
 
-Veuillez vérifier que vous sélectionner des puissance d'émission et de fréquence en accord avec la règlementation de votre région.
+Veuillez vérifier que vous sélectionner des puissances d'émission et de fréquence en accord avec la règlementation de votre région.
 
 ## Messages RTCM3
 

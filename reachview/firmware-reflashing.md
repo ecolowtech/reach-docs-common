@@ -1,115 +1,115 @@
-## When to reflash the firmware
+## Quand reprogrammer le firmware
 
-On this page you will find the information on how to reflash Reach firmware.
-Please note that you don't need to do this unless you want to bring Reach to its initial state or new firmware image version is released. If your Reach has ReachView version 0.4.9 it is necessary to reflash it with new firmware image in order to receive updates and support.
+Sur cette page vous trouverez les informtions sur comment reprogrammer le firmware du module Reach.
+Veuillez noter que vous n'avez pas besoin de faire cela à moins que vous voulez restaurer le module Reach à un état antérieur ou si une nouvelle version de l'image du firmware est mise à disposition. Si votre module Reach a la version 0.4.9 de ReachView il est nécessaire de le reprogrammer avec la nouvelle image firmware pour recevoir les mises à jour et du support.
 
-Most new features are released via ReachView app updates that can be updated simply by pressing an "Update" button in its interface.
+La plupart des fonctionnalités sont mises à disposition par l'application ReachView qui peut être mise à jour simplement en appuyant sur le bouton "Update" de l'interface.
 !!! note ""
-    More information on how to update ReachView app is available in [introduction section](/#updating).
+    Plus d'informations sur comment mettre à jour l'application ReachView est disponible dans la [section d'introduction](/#updating).
 
-### Emlid Reach RTK firmware download
+### Téléchargement du firmware Emlid Reach RTK
 
-You can get the latest version here:
+Vous pouvez obtenir la dernière version ici:
 
 [**Reach Image v2.3**](https://files.emlid.com/images/ReachImage_v2.3.zip)
 
-There are two ways to flash the image. Intel's Edison Board Configuration Tool and a CLI script.
+Il existe deux possibilités pour reprogrammer l'image. L'outil de configuration basé sur Intel Edion (Intel's Edison Board Configuration Tool) ou un script CLI (Command Line Interface).
 
-## Flashing process
+## Procédure de programmation
 
-### GUI guide
+### Guide GUI (avec Interface Graphique)
 
-#### Getting Intel Edison Board Configuration Tool
+#### Télécharger l'outil "Intel Edison Board Configuration Tool"
 
-You can get the tool [here](https://software.intel.com/en-us/iot/hardware/edison/downloads). It is available for Windows, Mac and Linux.
+L'outil est [ici](https://software.intel.com/en-us/iot/hardware/edison/downloads). Il est disponible pour Windows, Mac et Linux.
 
-#### Flashing Reach
+#### Programmation du Reach
 
-- Plug Reach to this computer 
-- Unzip the image 
-- Run Intel Edison Board Configuration Tool. Hit **Next**.
+- Brancher le module Reach à cet ordinateur
+- Décompresser l'image
+- Démarrer l'outil "Intel Edison Board Configuration Tool". Appuyez sur suivant **Next**.
 
 <p style="text-align:center" ><img src="../img/reachview/firmware-reflashing/welcome.png" style="width: 800px;" /></p>
 
-- Read License Agreement, accept the terms of the License and hit **Next** twice
+- Lire la license, en accepter les termes et appuyer sur **Next** deux fois
 
 <p style="text-align:center" ><img src="../img/reachview/firmware-reflashing/license.png" style="width: 800px;" /></p>
 
 
-- Install drivers (**Only for Windows**) 
+- Installer les drivers (**Pour Windows seulement**)
 
 <p style="text-align:center" ><img src="../img/reachview/firmware-reflashing/setupopt.png" style="width: 800px;" /></p>
 
 
-- After installation hit **Flash Firmware**
+- Après l'installation appuyez sur **Flash Firmware**
 
 <p style="text-align:center" ><img src="../img/reachview/firmware-reflashing/setup_with_drivers.png" style="width: 800px;" /></p>
 
-- Choose second item: **Use existing image, located at:**  
-- Choose correct path to the unzipped image (You will need to point it to a **.json** file for Windows and **.hddimg** for Linux)  
-- Hit **Next** twice
+- Choisissez le deuxième éléments: **Use existing image, located at:**  
+- Choisissez le chemin vers l'image décompressée (Vous devez pointer vers un ficher **.json** pour Windows et **.hddimg** pour Linux)  
+- Appuyez sur **Next** deux fois
 
 <p style="text-align:center" ><img src="../img/reachview/firmware-reflashing/choose_img.png" style="width: 800px;" /></p>
 
-- Proceed to "After flashing"
+- Poursuivre à la section "Après la programmation"
 
-### Terminal guide
+### Guide avec le Terminal
 
 #### Windows
 
-Before flashing:
+Avant la programmation:
 
-* Install [Intel Edison drivers](http://downloadmirror.intel.com/24909/eng/IntelEdisonDriverSetup1.2.1.exe)
-* Unzip downloaded image
-* Unplug Reach if it's plugged in
+* Installer les [drivers Intel Edison](http://downloadmirror.intel.com/24909/eng/IntelEdisonDriverSetup1.2.1.exe)
+* Décompresser l'image téléchargée
+* Déconnecter le module Reach s'il est connecté
 
-To flash:
+Pour programmer:
 
-1. `cd` into the image directory
-2. Run `flashall.bat`
-3. Plug Reach in
-4. Monitor progress in the terminal window
-5. Proceed to "After flashing"
+1. `cd` dans le répertoire de l'image
+2. Executer `flashall.bat`
+3. Connecter le module Reach
+4. Suivre la progression dans la fenêre du terminal
+5. Poursuivre à la section "Après la programmation"
 
 #### Mac OS X
 
-Before flashing:
+Avant la programmation:
 
-* Unzip downloaded image
-* Install **[homebrew](http://brew.sh)**
-* Install dependencies with `brew install dfu-util coreutils gnu-getopt`
-* Unplug Reach if it's plugged in
+* Décompresser l'image téléchargée
+* Installer **[homebrew](http://brew.sh)**
+* Installer les dépendances avec`brew install dfu-util coreutils gnu-getopt`
+* Déconnecter le module Reach s'il est connecté
 
-To flash:
+Pour programmer:
 
-1. `cd` into the image directory
-2. Run `sudo ./flashall.sh`
-3. Plug Reach in
-4. Monitor progress in the terminal window
-5. Proceed to "After flashing"
+1. `cd` dans le répertoire de l'image
+2. Executer `sudo ./flashall.sh`
+3. Connecter le module Reach
+4. Suivre la progression dans la fenêre du terminal
+5. Poursuivre à la section "Après la programmation"
 
 #### Linux
 
-Before flashing:
+Avant la programmation:
 
-* Unzip downloaded image
-* Unplug Reach if it's plugged in
+* Décompresser l'image téléchargée
+* Déconnecter le module Reach s'il est connecté
 
 To flash:
 
-1. `cd` into the image directory
-2. Run `sudo ./flashall.sh`
-3. Plug Reach in
-4. Monitor progress in the terminal window
-5. Proceed to "After flashing"
+1. `cd` dans le répertoire de l'image
+2. Executer `sudo ./flashall.sh`
+3. Connecter le module Reach
+4. Suivre la progression dans la fenêre du terminal
+5. Poursuivre à la section "Après la programmation"
 
-## After flashing
+## Après la programmation
 
-After the initial process is done, Reach will reboot. **Do not unplug it until it reboots and goes through the initial setup process completely**.
+Une fois la première étape de programmation effectuée, le module Reach va redémarrer. **Ne le déconnectez pas avant la fin du redémarrage ou avant qu'il est terminé le processus de configuration**.
 
-Since image version **1.2**, the LED signals on Reach during startup are as follows:
+Dpeuis la version **1.2** de l'image, les signaux de la LED sur le module Reach pendant le démarrage sont les suivants:
 
-* <font color="magenta">Magenta</font> during device boot
-* Off, then White for a second to show script start
-* Blinking <font color="yellow" style="background-color: grey;">Yellow</font> while looking for known networks
-* <font color="green">Green</font> after creating a hotspot
+* <font color="magenta">Magenta</font> pendant le démarrage de l'appareil
+* Eteint, puis Blanc pendant une seconde pour signifier le démarrage du script
+* Clignottement <font color="yellow" style="background-color: grey;">Jaune</font> lors de la recherche de réseaux connus.
+* <font color="green">Vert</font> après la création du hotspot

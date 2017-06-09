@@ -149,7 +149,7 @@
 
 * RTKLIB update to newer beta. RTKLIB has been heavily updated
 * Firefox support. Front-end has been updated to fix the insane behavior in this browser
-* Display base on the map. 
+* Display base on the map.
 * Smaller grid size. The minimum grid size has been decreased to 500mm
 
 ### v2.1.3 beta
@@ -184,7 +184,7 @@
 ### v2.0 beta
 ([release](https://community.emlid.com/t/reachview-2-beta-release/4304))
 
-* App rebuild. Improved general stability, user experience and usability. 
+* App rebuild. Improved general stability, user experience and usability.
 
 ### v0.4.9
 
@@ -211,7 +211,7 @@
 ### v0.4.4
 
 * Added RTKLIB integrity check on startup, which fixes the bug with logs not downloading properly
-* Updated rtkrcv for better performance with dynamic filter on. 
+* Updated rtkrcv for better performance with dynamic filter on.
 * Updated rtkrcv send to more complete NMEA GGA to the base
 * Improve startup time
 

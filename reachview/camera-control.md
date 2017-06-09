@@ -1,10 +1,9 @@
-Reach is able to trigger cameras as well as register events. Event mark feature is a must for aerial mapping as it allows to register precise time when shutter was activated.
+Le module Reach est capable de déclencher une caméra et aussi d'enregistrer des évènements. La fonctionnalité de marquage d'évenements (event mark) est impérative pour la cartographie aérienne parce qu'elle permet d'enregistrer précisément l'heure à laquelle l'obturateur a été activée.
 
 <p style="text-align:center" ><img src="../img/reachview/camera_control/camera.png" style="width: 800px;" /></p>
 
-### Camera trigger
-Camera trigger is only available on Reach module and not available on Reach RS. By altering the duty cycle and period parameters you can match settings required for triggering your camera module. Real-time signal graph is shown on the same page. Note, that this feature does not have to be used if your autopilot is able to trigger the camera, as it has more information about the flight plan and can make more informed decisions on when to fire the camera. 
+### Déclencheur de la caméra (Camera trigger)
+Le déclencheur de la caméra est seulement disponible pour le module Reach et n'est pas disponible avec le Reach RS. En ajustant les paramètres de cycle de travail (duty cycle) et l'interval (period) vous pouvez adapter les paramètres nécessaires au déclenchement de votre camera. Le graphique temps réel du signal est affiché sur la même page. Notez que cette fonctionnalité n'est pas nécessaire si votre module d'auto-pilotage est capable de déclencher la caméra, surtout qu'il dispose de plus d'informations sur le plan de vol et peut ainsi prendre des décisions éclairées concernant l'instant où la caméra doit être déclenchée.
 
-### Camera events
-You see the time of the last event for real-time debugging. Only works with GNSS satellites in view for time synchronization. Event is triggered by driving time mark pin down, usually by a camera hot shoe. All event marks are stored in the raw data log. Time mark pin is designed to be directly connected to a hotshoe cable without any additional electronic parts such as resistors or capacitors. 
-
+### Evènements caméra (Camera events)
+L'heure du dernier évènement s'affiche pour le déboggage en temps réel. Cela fonctionne seulement avec les satellites GNSS visibles pour la synchronisation temporelle. Un évènement est déclenchée en mettant à la masse la broche de marquage temporel, habituellement par le sabot de l'appareil. Toutes les marques d'évènements sont enregistrées dans les données brutes des logs. La broche de marquage temporel (time mark pin) est conçue pour être connectée à un cable de synchronisation sans aucun composant électronique supplémentaire comme des résistances ou des condensateurs.
