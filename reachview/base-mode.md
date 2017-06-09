@@ -118,26 +118,26 @@ Another use of the message is to assist user receivers to quickly acquire satell
 > <cite> Radio Technical Commission for Maritime Services. 2016. RTCM STANDARD 10403.3 DIFFERENTIAL GNSS (GLOBAL NAVIGATION SATELLITE SYSTEMS) SERVICES – VERSION 3. Virginia: Radio Technical Commission for Maritime Services, pp. 108-262</cite>
 
 
-## Base position
+## Coordonnées de la station fixe (Base position)
 
 <p style="text-align:center"><img src="../img/reachview/base_mode/position.png" style="width: 800px;"/></p>
 
-There are two main options how to specify base station position. Note that RTK positioning is relative to the base station, so any inaccuracy in it’s position will result in a constant shift of rover coordinates. For many applications it is not critical and averaged single coordinate of the base could be used. If your application requires absolute accuracy for rover position an accurate  base coordinate must be entered.
+Il existe deux principaux paramètres pour spécifier les coordonnées de la station fixe (base). Notez que le positionnement RTK est relatif à la position de la base, donc tout approximation dans sa position résultera en un décalage constant des coordonnées du récepteur mobile (rover). Pour beaucoup de cas d'utilisation ce n'est pas critique et moyenner des coordonnées issus d'une solution SINGLE peut suffir. Si votre cas d'utilisation nécessite des coordonnées en précision absolu pour le récepteur mobile alors les coordonnées précises de la station fixe (base) doivent être renseignées.
 
-### Manual
-In this mode you supply an a priori known coordinate by locating the unit above surveyed point. Coordinate has to be supplied in ECEF XYZ or in WGS84 Latitude and Longitude and WGS84 ellipsoid height. Antenna height offset is entered at this stage as well, offset is limited to 6.5535 m by the RTCM message.
+### Manuel (Manual)
+Dans ce mode vous renseignez une coordonnée connue a priori en positionnant le module au dessus du point de levé. Les coordonnées doivent être entrées au format XYZ ECED ou au format Latitude et Longitude WGS84 et altitude ellipsoïdales WGS84. Le décalage de hauteur d'antenne est également renseigné lors de cette étape, le décalage étant limité à 6.5535m par le format des messages RTCM.
 
-### Average
-By default Reach will average base position every time it starts. This feature significantly simplifies initial setup in a new location, however it will not provide an accurate absolute coordinate.
+### Moyennage (Average)
+Par défaut le module Reach effectuera un moyennage de la position de la station fixe (base) lors de chaque redémarrage. Cette fonctionnalité améliore significativement la configuration initiale sur un nouveau site, cependant elle ne fournit pas des coordonnées absolues correctes.
 
-ReachView has a unique feature that allows it to determine base station position while working as a rover from another base. This is done by obtaining RTK Fixed solution, averaging it over a period of time and this way obtaining an accurate position for the base. A typical scenario would involve setting up a local base station by determining its coordinate from NTRIP and then broadcasting correction locally, thus reducing the baseline for rovers and improving positioning performance.
+ReachView possède une fonctionnalité unique qui lui permet de déterminer les coordonnées de la station fixe (base) alors qu'il fonctionne en tant que récepteur mobile (rover) en tandem avec une autre station fixe. Ceci est effectué en obtenant un position RTK "Fix", en la moyennant sur une certaine durée et en obtenant alors des coordonnées correctes pour la station fixe (base). Un exemple de scénario courant implique de configurer une station fixe locale en déterminant ses coordonnées via NTRIP et en diffusant ensuite les données de correction localement, ce qui permet ainsi de réduire la distance au référentiel (baseline) pour les récepteurs mobiles et donc améliorer la qualité du positionnement.
 
-If the reference station is too far away it is possible to average float and still improve the accuracy of the position.
+Si la station de référence est trop éloignée il est possible de moyenner une solution FLOAT et de tout de même améliorer l'exactitude des coordonnées.
 
-In case no correction is available when setting up base or absolute accuracy is not required averaged single coordinates could be used.
+Dans le cas où aucune correction n'est disponible lors de la configuration de la station fixe (base) ou si des coordonnées absolues ne sont pas nécessaires alors moyenner les coordonnées issues d'une solution SINGLE peut être suffisant.
 
-**Save averaged position to manual**  
-After you have successfully obtained averaged position you might want to save it for future use. Click on the “save coordinates” icon and position will be saved as if it was entered in manual mode. Now every time Reach starts it will broadcast this position in correction messages.
+**Enregistrer des coordonnées moyennées pour le mode manuel**  
+Une fois que vous avez réussi à obtenir des coordonnées moyennées vous pouvez les enregistrer pour un usage ultérieur. Appuyez sur l'icône d'enregistrement des coordonnées "save coordinates" et la position sera enregistrée comme si elle avait été entrée en mode manuel. Ainsi lors de chaque redémarrage le module Reach diffusera cette position dans les messages de correction.
 
-**Repeat averaging**  
-If you would like to restart base position averaging process you can click on “repeat averaging” icon.This is especially useful in a situation when you accidentally moved Reach during averaging.
+**Recommencer le moyennage**  
+Si vous souhaitez recommencer le moyennage des coordonnées de la station fixe vous pouvez cliquer sur l'icône "repeat averaging". C'est particulièrement utile lors d'une situation où vous avez accidentellement déplacé le module Reach pendant le moyennage.
