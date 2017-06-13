@@ -1,58 +1,56 @@
-## Video Demonstration
+## Démonstration Vidéo
 
-A deep gratitude goes to our pro-user [TB_RTK](https://community.emlid.com/users/tb_rtk/activity) for a significant contribution in this tutorial. 
+Un grand merci pour votre utilisateur professionnel [TB_RTK](https://community.emlid.com/users/tb_rtk/activity) pour l'importante contribution à ce tutoriel.
 
 <div style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/yy8EVSMq9Bk" frameborder="0" allowfullscreen></iframe></div>
 
-It is possible to replace internal GPS on your Android device with Reach, this way any positioning app will be able to use precise RTK coordinates. Commonly used apps are Mobile Topographer Pro and ESRI Arcgis Collector.
+Il est possible de remplacer le GPS interne de votre appareil Android, de cette façon toute application utilisation le positionnement du téléphone sera en mesure d'utiliser les coordonnées RTK calculées. Les applications couramment utilisées sont Mobile Topographer Pro et ESRI Arcgis Collector.
 
-## Reach configuration
+## Configuration du module Reach
 
-To use Reach with Android app you will need to do the following:
+Pour utiliser un module Reach avec une application Android, vous aurez besoin d'effectuer les étapes suivantes :
 
-* Pair your Android device with Reach / Reach RS
- 
+* Associer votre appareil Android avec votre module Reach / Reach RS
+
 !!! tip
-    To do this, make your device discoverable. Then, go to the **Wifi/Bluetooth Tab** and find your device in bluetooth section. Once your device appears in the "discoverable" section, hit it to send a pairing request. Accept the pairing request on your device. Your device will appear in the "paired devices section".
+    Pour cette étape, mettez votre appareil en détectable. Ensuite, allez dans l'onglet **Wifi/Bluetooth** et cherchez votre appareil dans la section Bluetooth. Une fois que votre appareil apparaît dans la section "détectable", cliquez dessus pour envoyer une demande d'association. Accpetez la demande sur votre appareil. Votre appareil apparaît ensuite dans la section des appareils associés "paired devices".
 
 
 <p style="text-align:center"><img src="../img/reach/mock-location/bluetooth.png" style="width: 800px;"/></p>
 
 
-* In the "Position output Tab set position output to BT and format to **NMEA**
+* Dans l'onglet "Position output" activiez l'export des coordonnées via Bluetooth "BT" et choisissez le format **NMEA**
 
 !!! tip
-    Don't forget to Apply the new rover settings
+    N'oubliez pas d'appliquez les changements effectués sur le récepteur mobile en cliquant sur "Apply"
 
 <p style="text-align:center"><img src="../img/reach/mock-location/solution.png" style="width: 800px;"/></p>
 
-## Android mock location
+## Positions fictives Android
 
-We provide a guide on how to use Reach with [Lefebure NTRIP caster](https://play.google.com/store/apps/details?id=com.lefebure.ntripclient) by Lefebure Design.
+Nous fournissons un guide d'utilisation du module Reach avec [Lefebure NTRIP caster](https://play.google.com/store/apps/details?id=com.lefebure.ntripclient) réalisé par Lefebure Design.
 
-Despite being called an NTRIP caster this app allows NMEA data input via bluetooth as well. Also, it supports Android feature called **mock location**, which allows to substitute your device's built-in GPS receiver with an external location provider, Reach in our case.
+Malgré l'appellation de diffuseur NTRIP (caster) cette application autorise également les entrées de données NMEA par bluetooth. Aussi, elle supporte la fonctionnalité Android de **Position fictives** (ou "mock location" en anglais), qui permet de remplacer votre récepteur GPS interne intégré dans votre appareil par un appareil externe fournissant ces données de position, le module Reach dans notre cas.
 
-To connect Reach, do the following:
+Pour connecter le module Reach, effectuez les étapes suivantes :
 
-* Open the app, go to the settings(gear in the upper right corner)
+* Ouvrir l'application, allez dans les préférences ("settings") en appuyant sur le bouton d'engrenage dans le coin en haut à droite
 
 <p style="text-align:center"><img src="../img/reach/mock-location/lefebure-main-screen.jpg" style="width: 300px;"/></p>
 
-* Then go to receiver settings
+* Allez ensuite dans les paramètres du récepteur "receiver settings"
 
 <p style="text-align:center"><img src="../img/reach/mock-location/lefebure-settings.jpg" style="width: 300px;"/></p>
 
-!!! check "Inside Receiver Settings:" 
-    1. Change Bluetooth device to the Reach you are paired with  
-    2. Change Bluetooth Connection Method to **Secure via Reflection**  
-    3. Enable **Mock location** if you need to  
+!!! À Vérifier dans "Receiver Settings":
+    1. Modifier l'appareil Bluetooth pour qu'il s'agisse du module Reach auquel vous êtes associé
+    2. Modifier la méthode de connexion Bluetooth "Bluetooth Connection Method" à **Secure via Reflection**  
+    3. Activez et Autorisez les **Positions Fictives** (ou **Mock location** en anglais) si besoin
 
 <p style="text-align:center"><img src="../img/reach/mock-location/lefebure-receiver-settings.jpg" style="width: 300px;"/></p>
 
-* Go back to the main screen, hit **Connect** and watch the connection!
+* Retournez à l'écran principal, cliquez sur **Connect** et regarder les informations de connexion!
 
 <p style="text-align:center"><img src="../img/reach/mock-location/lefebure-connected.jpg" style="width: 300px;"/></p>
 
-
-Now coordinates in your Android device are replaced with coordinates from Reach / Reach RS and you can use them in any app.
-
+Désormais les coordonnées de votre appareil Android sont remplacées par les coordonnées du module Reach / Reach RS et vous pouvez les utiliser dans n'importe quelle application.

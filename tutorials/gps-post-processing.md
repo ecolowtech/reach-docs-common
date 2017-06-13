@@ -1,180 +1,176 @@
-## Required data
+## Données requises
 
-This tutorial requires:
+Ce tutoriel nécessite:
 
-* Raw logs from the rover
-* Raw logs from the base
-* (Optional) For absolute positioning: RINEX observations log from a reference station in range of 100 km
-* (Optional) For processing improvement: precise ephemeris and clock files from the IGS
+* Les logs brutes du récepteur mobile (rover)
+* Les logs brutes de la station fixe (base)
+* (en option) Pour une précision absolue: les logs des observations RINEX d'une station de référence distante de moins de 100km
+* (en option) Pour améliorer la précision du traitement: les fichiers d'éphéméridese et d'horloges précises issus de l'IGS
 
-Rover track is calculated relatively to the base station so in order to get rover track with correct absolute coordinates the exact position of the base station should be known. You either need to place base station on a point with known coordinate or determine it by post-processing base against a reference station in static mode. It is better if the station is within 100 km range, but longer range might work as well.
+Le parcours du récepteur mobile est calculé en position relative à la station fixe (base) donc pour avoir le parcours du récepteur mobile (rover) avec des coordonnées en précision absolue la position exacte de la station fixe (base) doit être connue. Il faut soit positionner la station fixe en un point de coordonnées connues ou les déterminer avec un post-traitement utilisant une station de référence et en étant en mode statique. Il est préférable que la station de référence soit dans un rayon de 100 km, mais un rayon plus important peut aussi fonctionner.
 
 
-## Converting raw logs to RINEX
+## Convertir les logs brutes en RINEX
 
-Start [RTKLIB RTKCONV](https://files.emlid.com/RTKLIB/rtkconv_emlid_b27.exe) after downloading raw files from Reach to your PC.
+Démarrer [RTKLIB RTKCONV](https://files.emlid.com/RTKLIB/rtkconv_emlid_b27.exe) après avoir télécharger les fichiers brutes depuis le module Reach sur votre PC.
 
-* Add your rover raw log in the first field and choose output directory.
-* Choose format of your log in pop-down menu. Set format to u-blox if logs downloaded from each device. Otherwise, choose RTCM3 if base and rover logs were received from rover.
+* Ajouter les logs brutes du récepteur mobile (rover) dans le premier champ et sélectionner le répertoire de sortie.
+* Sélectionner le format de votre log dans le menu déroulant. Choisissez le format u-blox si les logs ont été téléchargés depuis chacun des appareils. Sinon, choisissez RTCM3 si les logs de la station fixe (base) et du récepteur mobile (rover) ont été récupérés depuis le récepteur mobile (rover).
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkconv_format.png" style="width: 600px;"></div>
 
-* Push "Options" button.
-* Choose "RINEX Version" 3.03.
-* Turn on "Satellites Systems" you need.
-* Press "OK" and "Convert" after.
+* Cliquez sur le bouton "Options".
+* Choisissez "RINEX Version" 3.03.
+* Activez les systèmes satellites "Satellites Systems" dont vous avez besoin.
+* Appuyez sur "OK" et ensuite sur convertir "Convert".
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkconv_options.png" style="width: 600px;"></div>
 
-Now you should repeat the same with base log. Don't forget to change format.
-After that you'll see something similar in your output folder.
+Maintenant vous pouvez répétez l'opération avec les logs de la station fixe. Mais n'oubliez pas de changer de format.
+Après cette étape votre répertoire de sortir ressemblera à ça.
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkconv_output_folder.png" style="width: 600px;"></div>
 
 
-### Calculating base position
+### Déterminer les coordonnées de la station fixe (base)
 
-Start [RTKLIB RTKPOST](https://files.emlid.com/RTKLIB/rtkpost_emlid_b27.exe) software and enter the fields as shown here. If running for the first time you will need to set mode to Kinematic or Static in the options to unlock the fields for base station data. You can skip the start time, it is not compulsory.
+Démarrer le logiciel [RTKLIB RTKPOST](https://files.emlid.com/RTKLIB/rtkpost_emlid_b27.exe) et remplissez les champs comme indiqué ici. Si vous le démarrez pour la première fois vous avez besoin de définir le mode statique (Static) ou cinématique (Kinematic) dans les options pour débloquer les champs correspondant aux données de la station fixe (base). Vous pouvez ignorer l'heure de départ (start time), ce n'est pas obligatoire.
 
-* Choose rover .obs file for the Rover field (RINEX file from your rover).
-* Select base station .obs file for the Base Station field (RINEX file from your base).
-* Put base or rover .nav file in the third field.
-* (Optional) You can as well add precise ephemeris and clocks at this stage. They are required for long baselines.
+* Sélectionner le fichier .obs du champs du récepteur mobile, le "rover". (Fichier RINEX issu du récepteur mobile, le "rover" en anglais)
+* Sélectionner le fichier .obs du champs de la station fixe, la "base". (Fichier RINEX issu de la station fixe, la "base" en anglais)
+* Sélectionner le fichier .nav de la station fixe (base) ou du récepteur mobile (rover) dans le troisième champ.
+* (en option) Vous pouvez aussi lors de cette étape ajouter les éphémérides et horloges précises. Elles sont requises pour les grandes distances au référentiel (long baselines).
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkpost_adding_files.png" style="width: 600px;"></div>
 
 
-Now proceed to the options by pushing "Options" button.
+Poursuivez ensuite en appuyant sur le bouton "Options".
 
-* Set positioning mode you need. Usually it's "Kinematic" or "Static".
+* Sélectionnez le mode de positionnement "positioning mode" souhaité. Souvent cinématique (Kinematic) ou statique (static).
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkpost_setting1_mode.png" style="width: 600px;"></div>
 
 
-* Choose "Elevation Mask" value. Usually it's 15-20.
-* Push "SNR Mask" button and set the value you need. This will help you to avoid satellites with low signal strength.
+* Choisissez une valeur du masque d'élevation "Elevation Mask". Souvent entre 15 et 20 degrés.
+* Appuyez sur le bouton concernant le masque du rapport signal-bruit "SNR Mask" et spécifier une valeur. Cela permettra de ne pas tenir compte des satellites avec des intensités de signaux trop faibles.
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkpost_setting1_mask.png" style="width: 600px;"></div>
 
 
-* Turn on "Rec Dynamics" to estimate receiver velocity and acceleration. Use it for DGPS/DGNSS or Kinematic modes.
-* Select used navigation systems.
+* Activez "Rec Dynamics" pour estimer la vitesse et l'accélération du récepteur mobile. À utiliser pour un usage différentiel DGPS/DGNSS ou les modes cinématiques (kinematic).
+* Sélectionner les systèmes de navigation (navigation systems).
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkpost_setting1_dynamics.png" style="width: 600px;"></div>
 
 
-* Go to the "Setting2" tab.
-* Set "Integer Ambiguity Res" to Fix and Hold. In this mode continuously static integer ambiguities are estimated and resolved. If the validation OK, the ambiguities are tightly constrained to the resolved values.
+* Ouvrez l'onglet "Settings2".
+* Paramétrez la résolution de l'ambiguïté à l'entier adéquat "Integer Ambiguity Res" à la valeur "Fix and Hold". Dans ce mode les ambiguïtés sont estimées et résolues en continu. Si la validation est OK, les ambiguïtés à l'entier adéquat sont fortement contraintes vers les valeurs calculées.
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkpost_setting2_ambiguity.png" style="width: 600px;"></div>
 
 
-* Set "Max Pos Var for AR" and turn on "AR Filter" on the right.
+* Spécifiez une valeur pour la variation maximale de la position liée à la résolution d'ambiguïté "Max Pos Var for AR" et activez le filtre de résolution d'ambiguïté "AR Filter" à droite.
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkpost_setting2_ar.png" style="width: 600px;"></div>
 
 
-* Switch to "Positions" tab.
-* Select "Base Station". Choose "Average of Single Position" for any log to average single point solution or "RINEX Header Position" to use approximate position in RINEX .obs header.
+* Passez à l'onglet "Positions"..
+* Sélectionnez la station fixe "Base Station". Choisissez le moyennage de la position avec une solution SINGLE "Average of Single Position" en s'appuyant sur un fichier de log ou utilisez la position située dans l'en tête du fichier RINEX avec "RINEX Header Position" qui se basera sur l'en-tête du fichier .obs.
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkpost_positions_base.png" style="width: 600px;"></div>
 
 
-* Press "OK" button and "Execute" in the main window.
-* You'll see green process bar. Wait until "done" label. It could take quite a lot of time if your logs are big. In that case window could not answer. Just chill and relax.
+* Appuyez sur le bouton "OK" puis lancer le traitement avec "Execute" dans la fenêtre principale.
+* Vous verrez une barre d'avancement verte. Patientez jusqu'à l'indication de fin "done". Cela peut prendre un temps conséquent si vos fichiers de logs sont volumineux. Dans ce cas la fenêtre ne répond plus à vos actions. Patientez alors tranquillement.
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkpost_execute.png" style="width: 600px;"></div>
 
 
-After that you'll see something similar in your output folder. The .pos file with "__event" will contain timestamps if you had them during your job.
+Une fois terminé vous verrez à peu de choses près les fichiers suivants dans votre répertoire de sortie. Le fichier .pos avec "\__event" contiendra les horodatages (timestamps) si vous en aviez durant votre relevé.
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkpost_output_folder.png" style="width: 600px;"></div>
 
-## Result visualization and analysis
+## Visualiser et Analyser les résultats
 
-Open [RTKLIB RTKPLOT](https://github.com/tomojitakasu/RTKLIB_bin/raw/rtklib_2.4.3/bin/rtkplot.exe) and drag and drop your .pos file.
-If you see green points that mean that they're fix (Q=1), orange mean float (Q=2), red - single (Q=5).
+Ouvrez [RTKLIB RTKPLOT](https://github.com/tomojitakasu/RTKLIB_bin/raw/rtklib_2.4.3/bin/rtkplot.exe) et glissez-déposez votre fichier ".pos".
+Si vous voyez des points verts cela signifie que la solution est FIX (Q=1), orange signifie FLOAT (Q=2) et rouge signifie SINGLE (Q=5).
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkplot_pos.png" style="width: 600px;"></div>
 
 
-After that you could add .obs file to see more analyzing tools in pop-down menu.
-For example, first image shows "Satellite Visibility" and second one "Position" in 3 directions.
+Ensuite vous pouvez ajouter votre fichier ".obs" pour obtenir plus d'outils d'analyse dans le menu déroulant.
+Par exemple, la première image affiche les visibilités satellites "Satellite Visibility" et la seconde la "Position" selon les 3 axes.
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkplot_satvis.png" style="width: 600px;"></div>
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkplot_position.png" style="width: 600px;"></div>
 
-If you've got time marks add them as a Solution-2 (File -> Open Solution2).
+Si vous avez des marques temporelles vous pouvez les ajouter en tant que Solution-2 (File -> Open Solution2).
 
 <div style="text-align: center;"><img src="../img/reach/post-processing/rtkplot_timemarks.png" style="width: 600px;"></div>
 
+Pas mal, non ?
 
-Looks really good, isn't it?
+Tous les droits des fichiers de logs sont la propriétés de notre bon ami et excellent arpenteur Luke Wijnberg.
 
-All log rights belong to our good friend and great surveyor Luke Wijnberg.
+Pour plus d'informations concernant les options de traitement, consultez le [manuel RTKLIB](http://www.rtklib.com/prog/manual_2.4.2.pdf).
 
-For more information about options read [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf).
+<!--
 
-<!-- 
-
-
-Now switch tab and set GPS AR to Fix-and-hold and Glonass to OFF. Glonass integer ambiguity resolution can be enabled if both base and rover are Reach.
+Maintenant changez d'onglet et activez la résolution d'ambiguïté GPS à "Fix-and-hold" et désactivez la pour Glonass en la mettant à "OFF". La résolution d'ambiguïté Glonass peut être activée si la station fixe (base) et le récepteur mobile (rover) sont tous les deux des modules Reach.
 
 ![image](img/post-processing/Post3.PNG)
 
-The observations RINEX from the reference station includes exact position in the header file, so we will choose it for the base position. This is very important because it is reference coordinate in the whole post-processing workflow. You need to have one known point to start from.
+Le fichier RINEX des observations de la station de référence inclut la position exacte dans l'en-tête du fichier, donc nous l'utiliserons pour la position de la station fixe (base). Ceci est vraiment important parce qu'il s'agit des coordonnées de références utilisées dans toute la procédure de post-traitement. Vous avez besoin d'un point connu à partir duquel vous baser.
 
 ![image](img/post-processing/Post4.PNG)
 
-Now you can hit execute and monitor solution quality, Q=1 means FIX.
+Vous pouvez maintenant cliquez sur "Execute" and vérifiez la qualité de la solution, Q=1 signifie FIX.
 
 ![image](img/post-processing/Post5.PNG)
 
-After computation is over press Plot to see the track. We got the base coordinate, write it down we are going to use it in the next step.
+Une fois les calculs terminés cliquez sur le bouton de création du graphique "Plot" pour afficher le tracé. Nous obtenons les coordonnées de la station fixe (base), enregistez-là nous allons l'utiliser dans l'étape suivante.
 
 ![image](img/post-processing/POst6.PNG)
 
-### Calculating rover track
+### Calculer le tracé du récepteur mobile (rover)
 
-Browse to the rover obs (Rinex from your rover Reach), to the base station obs (Rinex from the base Reach) and to the nav (Rinex from your base Reach).
+Parcourez votre disque jusqu'aux fichiers Rinex ".obs" de votre récepteur mobile (rover), ".obs" de votre station de référence (base) et fichier de navigation ".nav" issue de votre station fixe (base).
 
 ![image](img/post-processing/Post7.PNG)
 
-Now proceed to the options and set positioning mode to Kinematic, that will tell RTKLIB that the receiver was moving. Select used navigation systems and set filter to combined. Enable dynamic filter as well.
+Poursuivez dans les options et sélectionner le mode de positionnement "cinématique", pour indiquer à RTKLIB que le récepteur mobile était en mouvement. Sélectionner les systèmes de navigation et les options des filtres. Activez également le filtre dynamique "Rec Dynamics".
 
 ![image](img/post-processing/Post8.PNG)
 
-In this case Glonass ambiguity resolution can be set to ON, as both receivers are identical.
+Dans ce cas la résolution d'ambiguïté Glonass peut être activé à "ON", puisque les deux modules sont identiques.
 
 ![image](img/post-processing/Post9.PNG)
 
-Now we are at the point where we need to enter the coordinates of the base that we have calculated in the previous step.
+Nous arrivons alors à l'étape où nous avons besoin d'entrer les coordonnées de la station fixe (base) que nous avons calculés lors d'une étape précédente.
 
 ![image](img/post-processing/Post10.PNG)
 
-Hit execute and plot the resulting solution. Looks good, but some regions are yellow which indicates float solution. We can look at the observations to try to find the source of the issue.
+Cliquez sur "Execute" puis affichez le résultat avec "Plot". Pas mal, mais certaines zones sont jaunes ce qui indique une solution FLOAT. Nous pouvons analyser les observations pour essayer de trouver la source du problème.
 
 ![image](img/post-processing/Post11.PNG)
 
-In RTKPLOT go to file-> open observations and select observations from the moving rover. Switch view to satellite visibility. You might need to go to the view options and select all satellite systems and set "cycle slip" to LLI flag to see data like this. We can notice that reception is worse in the beginning, so we can try to crop it to avoid feeding bad data in the filters.
+Dans RTKPLOT allez dans file-> open observations et sélectionner le fichier d'observations du récepteur mobile (rover). Changez la vue pour afficher les visibilités satellites. Il se peut que vous ayez besoin d'aller dans les options de la vue et de sélectionner tous les systems de navigations "ALL" et de paramétrer l'option de saut de cycle "cycle slip" à "LLI flat" pour voir les données comme indiqué dans la figure. On peut remarquer que la réception est moins bonne au début, et nous pouvons donc les éliminer pour éviter que les filtres utilisent des données de mauvaise qualité.
 
 ![image](img/post-processing/Post12.PNG)
 
-By switching view to Position it is evident that take off is around 14:05 and after this moment signal reception is much better.
+En affichant la vue "Position" il est évident que le décollage s'opère vers 14h05 et qu'ensuite la réception est bien meilleure.
 
 ![image](img/post-processing/Post13.PNG)
 
-Let's try to process again, but crop data at 14:03.
+Relançons le post-traitement à nouveau, mais en supprimant les données avant 14h03.
 
 ![image](img/post-processing/Post14.PNG)
 
-Looks really good now!
+C'est bien mieux maintenant !
 
 ![image](img/post-processing/Post15.PNG)
 
-What could have happened if we did not use the exact position of the base, but just averaged single position? The picture depict a close up of three turns, where green track has been processed with exact base station position specified and blue track has been processed without it. Both tracks are precise, but blue track has a shift of several meters.
+Et qu'aurait-il pu se passer si nous n'avions pas utilisé la position exacte de la station fixe (base), mais simplement une solution SINGLE moyennée ? La figure affiche un zoom sur trois virages, où le tracé vert a été calculé en utilisant la position exacte de la station fixe (base), et le tracé bleu a été calculé sans utiliser la position exacte. Les deux tracés sont précis, mais le tracé bleu est décalé de plusieurs mètres.
 
 ![image](img/post-processing/Post16.PNG) -->
-
-

@@ -1,32 +1,32 @@
-### What is Reach and what is it for?
+### Qu'est-ce qu'un module Reach, quel est son usage ?
 
-Reach is an RTK GNSS receiver for applications when your standard GPS with several meters accuracy just won’t cut it. It relies on RTK (real-time kinematics) technology to deliver centimeter level accuracy.
+Le module Reach est un récepteur RTK GNSS pour les applications où votre GPS standard avec une précision de plusieurs mètres ne suffit pas. Il repose sur la technology RTK (cinématique temps réel ou real-time kinematic en anglais) pour fournir une précision de l'ordre du centimètre.
 
-RTK was here for a long time, used mostly by surveyors and unaffordable to hobbyists and makers. If you needed centimeter precise positioning you had to spend thousands of dollars on an RTK system. With Reach we want to change that.
+Le RTK existe depuis longtemps, mais jusqu'alors utilisé principalement par des arpenteurs-géomètres et inacessible aux amateurs ou makers. Si vous aviez besoin d'une précision de quelques centimètres il vous fallait débourser plusieurs milliers d'euros dans un système RTK. Avec le module Reach nous voulons changer cela.
 
-Reach runs open-source RTK processing software called RTKLIB written by Tomoji Takasu. Previously a computer was required to run RTKLIB, but now all RTKLIB features are available directly on Reach.
+Le module Reach s'appuie sur un logiciel de traitement RTK open-source appelé RTKLIB écrit par Tomoji Takasu. Auparavant un ordinateur était nécessaire pour faire tourner RTKLIB, mais désormais toutes les fonctionnalités de RTKLIB sont disponibles directement au sein du module Reach.
 
-### What is an RTK?
+### Qu'est-ce que le RTK ?
 
-RTK is a technique used to improve the accuracy of gps system. Traditional GPS receivers, like one you can find in your smartphone, or on most robotic platforms could only determine  their position with 2-4 meters accuracy. RTK can give you centimeters.
+Le RTK est une technique utilisé pour améliorer l'exactitude d'un système GPS. Les récepteurs GPS usuels, comme ceux que vous avez dans votre smartphone, ou dans la plupart de la robotique peuvent seulement déterminer leur position avec une précision de 2 à 4 mètres. En RTK vous pouvez obtenir une précision de quelques centimètres.
 
-The whole GPS system is based on measuring how long does it take for a signal to travel from a satellite to the receiver. Knowing the precise orbits of the space vehicles – the ephemeris, and at least 4 travel times one can determine his position on the planet.
-Given the L1 GPS carrier frequency is 1575MHz, each wave is around 19cm in length. A receiver also measures the carrier phase of each of the signals. Theoretically, this should have given  us millimeter precision, so why do we still have to struggle with 2-4 meters accuracy? What are the sources of error, and what we can do to remove them?
+L'ensemble du système GPS repose sur la mesure de la durée du parcours d'un signal transmis depuis un satellite jusqu'au récepteur. En connaissance les orbites précises des engins spaciaux - les éphémérides, et au moins 4 durée de parcours il est possible de calculer sa position sur la planète.
+Avec la fréquence porteuse GPS L1 de 1575Mhz, la longueur d'onde est d'environ 19cm. Un récepteur mesure également la phase de la porteuse de chacun des signaux. Théoriquement, cela pourrait donner une précision de l'odre du millimètre, alors pourquoi avons-nous toujours à nous contenter d'une précision de 2 à 4 mètres ? Quelles sont les sources d'erreurs, et que pouvons-nous faire pour nous en affranchir ?
 
-The satellites orbit at 20 200 km above Earth surface. Transmitted signals travel through ionosphere and atmosphere and are slowed down and perturbed on the way. For example, travel time on cloudy day and in clear sky conditions would be different! Many factors can increase position error, the great thing is that we can assume that these factors do not change much in one area.
+Les satellites sont en orbite à environ 20 200 km de la surface de la Terre. Les signaux transmis traversent la ionosphère et l'atmosphère et sont ralentis ou perturbés sur leur trajet. Par exemple, le temps de transmission entre un jour nuageux ou ensoleillé est différent ! Beaucoup de facteurs peuvent augmenter l'erreur sur la position, la bonne nouvelle c'est qu'on peut considérer que ces facteurs ne changent que très peu sur une zone donnée.
 
-There are GPS augmentation systems (DGPS), like SBAS or WAAS that measure current signal perturbations on many ground control stations all over the world, build a error propagation model and broadcast corrections through satellites or radio. Many commercial receivers can use these signals for submeter positioning accuracy. But what to do if you want to get closer to centimeters?
+C'est ce que font les système d'augmentation GPS (DGPS), comme SBAS ou WAAS qui mesurent les perturbations instantanées des signaux au niveau de nombreuses station de contrôle au sol à travers le monde, élaborent un modèle des erreurs de propagation et transmettent les corrections par satellite ou radio. Beaucoup de récepteurs commerciaux peuvent utiliser ces signaux pour obtenir une précision inférieure au mètre. Mais comment faire si on veut plutôt s'approcher du centimètre ?
 
-The technology that would let us do it is called RTK (real-time kinematics). Two receivers are used, one of them is stationary and is called “base station”, the other one is “rover”. The base station measures errors, and knowing that it is stationary transmits corrections to the rover. The idea is simple, but not the math. Commercial systems could be subcentimeter precise and would cost you a fortune($5k+).
+La technologie qui nous permet de faire cela est appelée RTK (cinématique temps réel ou real-time kinematics en anglais). Deux récepteurs sont utilisés, l'un d'eux est stationnaire et est appelé "station fixe" (base station en anglais), et l'autre est le "récepteur mobile" (rover en anglais). La station fixe mesure les erreurs, et sachant qu'elle est fixe, transmet les corrections au récepteur mobile (rover). L'idée est simple, mais pas les mathématiques. Les systèmes commerciaux peuvent être plus précis que le centimètre et coûtent une fortune ($5k+).
 
-Also, if you do not need the precise coordinates in real-time, you can just record the data from the rover and the base and process it afterwards thus eliminating need in constant radiolink. This method is called post processing and is the most precise among all.
+Aussi, si vous n'avez pas besoin d'avoir les coordonnées précises en temps réel, vous pouvez simplement enregistrer les données du récepteur mobile (rover) et de la station fixe (base) et effectuer un traitement dans un second temps ce qui permet d'éliminer la nécessité d'un lien radio continu. Cette méthode est appelée le post-traitement (post-processing en anglais) et est la méthode la plus précise de toute.
 
-** Comparison of RTK and standalone coordinates **
+** Comparaison de coordonnées en mode RTK ou autonome **
 
-*Static mode:*
+*Mode statique (Static mode):*
 
 <p style="text-align:center" ><img src="../img/reach/rtk-introduction/reach-static-rtk-demo.png" style="width: 800px;" /></p>
 
-*Kinematic mode:*
+*Mode cinématique (Kinematic mode):*
 
 <p style="text-align:center" ><img src="../img/reach/rtk-introduction/reach-kinematic-rtk-demo.png" style="width: 800px;" /></p>
